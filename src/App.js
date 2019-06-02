@@ -1,19 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Trivia Game
-        </p>
-        
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+  render() {
+      return (
+          <div>
+              <Router>
+                  <Switch>
+                      <Route exact path="/" component={Home} />
+                      
+                  </Switch>
+              </Router>
+          </div>
+      );
+  }
 }
-
-export default App;
