@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Question from './Question';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -45,16 +46,14 @@ export default class Home extends React.Component {
             .map((trivia, idx) => {
                 return (
                     <div>
-                        {/* {trivia} */}
-                        Question #{idx+1}: 
-                        {trivia.question}
+                        <Question idx={idx + 1} question={trivia} />
                     </div>
                 )
             });
 
         return (
             <div className="home">
-                Home
+                Trivia Game
                 <div>{triviaEntry}</div>
             </div>
         );

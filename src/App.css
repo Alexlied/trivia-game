@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+.question {
+  border: thick solid black;
+  width: 500px;
+  height: 150px;
+  margin: 5px;
+  flex-wrap: wrap;
+  align-content: center;
+}
