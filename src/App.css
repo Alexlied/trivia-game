@@ -32,11 +32,26 @@
   }
 }
 
-.question {
+.home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-title {
+  font-size: larger;
+}
+
+.question-container {
   border: thick solid black;
   width: 500px;
   height: 150px;
   margin: 5px;
   flex-wrap: wrap;
   align-content: center;
+}
+
+.question {
+  padding: 5px;
 }

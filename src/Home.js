@@ -53,8 +53,10 @@ export default class Home extends React.Component {
 
         return (
             <div className="home">
-                Trivia Game
-                <div>{triviaEntry}</div>
+                <div className="home-title">
+                    Trivia Game
+                </div>
+                <div className="question-list">{triviaEntry}</div>
             </div>
         );
     }
