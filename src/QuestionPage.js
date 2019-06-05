@@ -61,15 +61,24 @@ export default class QuestionPage extends React.Component {
 
         const triviaEntry = this.state.data
             .map((trivia, idx) => {
+                let question = trivia.question;
+                let answers = new Array();
+
+                for (let i = 0; i < trivia.incorrect_answers.length; i++) {
+                    answers.push(trivia.incorrect_answers[i]);
+                }
+                answers.push(trivia.correct_answer);
+
                 return (
                     <div key={idx + 1}>
-                        <Question key={idx + 1} idx={idx + 1} question={trivia} addScore={this.handleAddScore} />
+                        <Question key={idx + 1} idx={idx + 1} question={question} answers={answers} correct={trivia.correct_answer} addScore={this.handleAddScore} />
                     </div>
                 )
             });
+            
 
         return (
-            <div className="home">
+            <div className="question-page">
                 <div className="home-link"><Link to={"/"}>Home</Link></div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="question-list">{triviaEntry}</div>

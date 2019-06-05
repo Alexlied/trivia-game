@@ -6,10 +6,10 @@ export default class Question extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {},
-            answers: {},
             selectedInput: false,
-            color: 'question-container'
+            color: 'question-container',
+            hasShuffled: false,
+            shuffledAnswers: this.shuffle(this.props.answers)
         }
     }
 
@@ -23,21 +23,21 @@ export default class Question extends React.Component {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
+        console.log("Shuffled answers");
         return array;
     }
 
     setAnswer(event) {
         console.log(event.target.value);
 
-        if (event.target.value === this.props.question.correct_answer) {
+        if (event.target.value === this.props.correct) {
             this.props.addScore(1);
-            console.log(this.props.idx + ": correct answer");
+            console.log("Selected index = " + event.target.value + ": correct answer");
             this.setState({
                 color: 'question-container-correct'
             });
         } else {
-            console.log(this.props.idx + ": wrong answer");
+            console.log("Selected index = " + event.target.value + ": wrong answer");
             this.setState({
                 color: 'question-container-wrong'
             });
@@ -49,31 +49,17 @@ export default class Question extends React.Component {
 
     render() {
         const questionDetails = this.props.question;
-
-        let answers = new Array();
-
-        for (let i = 0; i < questionDetails.incorrect_answers.length; i++) {
-            answers.push(questionDetails.incorrect_answers[i]);
-        }
-
-        answers.push(questionDetails.correct_answer);
-        
-        if(this.state.selectedInput === false) {
-            answers = this.shuffle(answers);
-            console.log("shuffled");
-        }
-
         let containerClass = this.state.color;
 
         return (
             <div className={containerClass} value='question'>
-                Question #{this.props.idx}:
-                    <div className='question'>{questionDetails.question}</div>
-                <div className='answer' onChange={event => this.setAnswer(event)}>
-                    <input type="radio" value={answers[0]} name="answer" disabled={this.state.selectedInput} /> {answers[0]}
-                    <input type="radio" value={answers[1]} name="answer" disabled={this.state.selectedInput} /> {answers[1]}
-                    <input type="radio" value={answers[2]} name="answer" disabled={this.state.selectedInput} /> {answers[2]}
-                    <input type="radio" value={answers[3]} name="answer" disabled={this.state.selectedInput} /> {answers[3]}
+                <div className="question-number">Question #{this.props.idx}:</div>
+                <div className='question'>{questionDetails}</div>
+                <div className='answer-list' onChange={event => this.setAnswer(event)}>
+                    <input type="radio" value={this.state.shuffledAnswers[0]} name="answer" disabled={this.state.selectedInput} /> {this.state.shuffledAnswers[0]}
+                    <input type="radio" value={this.state.shuffledAnswers[1]} name="answer" disabled={this.state.selectedInput} /> {this.state.shuffledAnswers[1]}
+                    <input type="radio" value={this.state.shuffledAnswers[2]} name="answer" disabled={this.state.selectedInput} /> {this.state.shuffledAnswers[2]}
+                    <input type="radio" value={this.state.shuffledAnswers[3]} name="answer" disabled={this.state.selectedInput} /> {this.state.shuffledAnswers[3]}
                 </div>
             </div>
         );

@@ -44,6 +44,14 @@
   font-size: larger;
 }
 
+.question-page {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .question-container {
   border: thick solid black;
   width: 500px;
@@ -71,8 +79,19 @@
   align-content: center;
 }
 
+.question-number {
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .question {
   padding: 5px;
+  font-size: 20px;
+}
+
+.answer-list {
+
 }
 
 .submit-button {
