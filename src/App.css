@@ -52,6 +52,24 @@
   align-content: center;
 }
 
+.question-container-correct {
+  border: thick solid green;
+  width: 500px;
+  height: 150px;
+  margin: 5px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.question-container-wrong {
+  border: thick solid red;
+  width: 500px;
+  height: 150px;
+  margin: 5px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
 .question {
   padding: 5px;
 }

@@ -8,7 +8,8 @@ export default class Question extends React.Component {
         this.state = {
             data: {},
             answers: {},
-            selectedInput: false
+            selectedInput: false,
+            color: 'question-container'
         }
     }
 
@@ -32,11 +33,17 @@ export default class Question extends React.Component {
         if (event.target.value === this.props.question.correct_answer) {
             this.props.addScore(1);
             console.log(this.props.idx + ": correct answer");
+            this.setState({
+                color: 'question-container-correct'
+            });
         } else {
             console.log(this.props.idx + ": wrong answer");
+            this.setState({
+                color: 'question-container-wrong'
+            });
         }
-        this.setState({ 
-            selectedInput: true 
+        this.setState({
+            selectedInput: true
         });
     }
 
@@ -52,29 +59,20 @@ export default class Question extends React.Component {
         answers.push(questionDetails.correct_answer);
         //this.shuffle(answers);
 
-        // if (questionDetails.type === 'boolean') {
-        //     return (
-        //         <div className='question-container'>
-        //             Question #{this.props.idx}:
-        //             <div className='question'>{questionDetails.question}</div>
-        //             <input type="radio" value="TRUE" name="boolean" /> True
-        //             <input type="radio" value="FALSE" name="boolean" /> False
-        //         </div>
-        //     );
-        // } else {
-            return (
-                <div className='question-container'>
-                    Question #{this.props.idx}:
+        let containerClass = this.state.color;
+
+        return (
+            <div className={containerClass} value='question'>
+                Question #{this.props.idx}:
                     <div className='question'>{questionDetails.question}</div>
-                    <div className='answer' onChange={event => this.setAnswer(event)}>
-                        <input type="radio" value={answers[0]} name="answer" disabled={this.state.selectedInput} /> {answers[0]}
-                        <input type="radio" value={answers[1]} name="answer" disabled={this.state.selectedInput} /> {answers[1]}
-                        <input type="radio" value={answers[2]} name="answer" disabled={this.state.selectedInput} /> {answers[2]}
-                        <input type="radio" value={answers[3]} name="answer" disabled={this.state.selectedInput} /> {answers[3]}
-                    </div>
+                <div className='answer' onChange={event => this.setAnswer(event)}>
+                    <input type="radio" value={answers[0]} name="answer" disabled={this.state.selectedInput} /> {answers[0]}
+                    <input type="radio" value={answers[1]} name="answer" disabled={this.state.selectedInput} /> {answers[1]}
+                    <input type="radio" value={answers[2]} name="answer" disabled={this.state.selectedInput} /> {answers[2]}
+                    <input type="radio" value={answers[3]} name="answer" disabled={this.state.selectedInput} /> {answers[3]}
                 </div>
-            );
-        // }
+            </div>
+        );
     }
 }
 Question.propTypes = {
