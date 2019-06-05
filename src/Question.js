@@ -57,7 +57,11 @@ export default class Question extends React.Component {
         }
 
         answers.push(questionDetails.correct_answer);
-        //this.shuffle(answers);
+        
+        if(this.state.selectedInput === false) {
+            answers = this.shuffle(answers);
+            console.log("shuffled");
+        }
 
         let containerClass = this.state.color;
 
