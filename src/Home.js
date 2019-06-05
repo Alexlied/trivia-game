@@ -14,10 +14,12 @@ export default class Home extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAddScore = this.handleAddScore.bind(this);
     }
 
     componentDidMount() {
-        const triviaUrl = 'https://opentdb.com/api.php?amount=10';
+        //const triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
+        const triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
         fetch(triviaUrl)
             .then(response => {
                 return response.json();
@@ -37,13 +39,14 @@ export default class Home extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('Answers submitted');
+        let score = this.state.score;
+        alert(`You scored out of ${score} out of 10 questions`, score);
         event.preventDefault();
     }
 
-    handleAddScore(event) {
+    handleAddScore(val) {
         this.setState({
-            score: this.state.score + 1
+            score: this.state.score + val
         });
     }
 
@@ -60,7 +63,7 @@ export default class Home extends React.Component {
             .map((trivia, idx) => {
                 return (
                     <div>
-                        <Question idx={idx + 1} question={trivia} addScore={this.handleAddScore} />
+                        <Question key={idx + 1} idx={idx + 1} question={trivia} addScore={this.handleAddScore} />
                     </div>
                 )
             });
@@ -73,7 +76,7 @@ export default class Home extends React.Component {
                 <div>Score = {this.state.score}</div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="question-list">{triviaEntry}</div>
-                    <input type="submit" value="Submit" />
+                    <input className="submit-button" type="submit" value="Submit" />
                 </form>
             </div>
         );

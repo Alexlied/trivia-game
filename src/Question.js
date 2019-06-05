@@ -7,7 +7,8 @@ export default class Question extends React.Component {
         super(props);
         this.state = {
             data: {},
-            answers: {}
+            answers: {},
+            selectedInput: false
         }
     }
 
@@ -29,11 +30,14 @@ export default class Question extends React.Component {
         console.log(event.target.value);
 
         if (event.target.value === this.props.question.correct_answer) {
-            // this.props.addScore();
+            this.props.addScore(1);
             console.log(this.props.idx + ": correct answer");
         } else {
             console.log(this.props.idx + ": wrong answer");
         }
+        this.setState({ 
+            selectedInput: true 
+        });
     }
 
     render() {
@@ -46,31 +50,31 @@ export default class Question extends React.Component {
         }
 
         answers.push(questionDetails.correct_answer);
-        this.shuffle(answers);
+        //this.shuffle(answers);
 
-        if (questionDetails.type === 'boolean') {
-            return (
-                <div className='question-container'>
-                    Question #{this.props.idx}:
-                    <div className='question'>{questionDetails.question}</div>
-                    <input type="radio" value="TRUE" name="boolean" /> True
-                    <input type="radio" value="FALSE" name="boolean" /> False
-                </div>
-            );
-        } else {
+        // if (questionDetails.type === 'boolean') {
+        //     return (
+        //         <div className='question-container'>
+        //             Question #{this.props.idx}:
+        //             <div className='question'>{questionDetails.question}</div>
+        //             <input type="radio" value="TRUE" name="boolean" /> True
+        //             <input type="radio" value="FALSE" name="boolean" /> False
+        //         </div>
+        //     );
+        // } else {
             return (
                 <div className='question-container'>
                     Question #{this.props.idx}:
                     <div className='question'>{questionDetails.question}</div>
                     <div className='answer' onChange={event => this.setAnswer(event)}>
-                        <input type="radio" value={answers[0]} name="answer" /> {answers[0]}
-                        <input type="radio" value={answers[1]} name="answer" /> {answers[1]}
-                        <input type="radio" value={answers[2]} name="answer" /> {answers[2]}
-                        <input type="radio" value={answers[3]} name="answer" /> {answers[3]}
+                        <input type="radio" value={answers[0]} name="answer" disabled={this.state.selectedInput} /> {answers[0]}
+                        <input type="radio" value={answers[1]} name="answer" disabled={this.state.selectedInput} /> {answers[1]}
+                        <input type="radio" value={answers[2]} name="answer" disabled={this.state.selectedInput} /> {answers[2]}
+                        <input type="radio" value={answers[3]} name="answer" disabled={this.state.selectedInput} /> {answers[3]}
                     </div>
                 </div>
             );
-        }
+        // }
     }
 }
 Question.propTypes = {
