@@ -9,8 +9,11 @@ export default class Home extends React.Component {
         this.state = {
             data: {},
             isLoading: true,
-            hasError: false
+            hasError: false,
+            score: 0
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -33,6 +36,17 @@ export default class Home extends React.Component {
             });
     }
 
+    handleSubmit(event) {
+        alert('Answers submitted');
+        event.preventDefault();
+    }
+
+    handleAddScore(event) {
+        this.setState({
+            score: this.state.score + 1
+        });
+    }
+
     render() {
         if (this.state.isLoading) {
             return <div>Loading...</div>;
@@ -46,7 +60,7 @@ export default class Home extends React.Component {
             .map((trivia, idx) => {
                 return (
                     <div>
-                        <Question idx={idx + 1} question={trivia} />
+                        <Question idx={idx + 1} question={trivia} addScore={this.handleAddScore} />
                     </div>
                 )
             });
@@ -56,7 +70,11 @@ export default class Home extends React.Component {
                 <div className="home-title">
                     Trivia Game
                 </div>
-                <div className="question-list">{triviaEntry}</div>
+                <div>Score = {this.state.score}</div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="question-list">{triviaEntry}</div>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         );
     }

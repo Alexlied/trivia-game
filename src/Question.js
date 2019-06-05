@@ -15,14 +15,25 @@ export default class Question extends React.Component {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
         while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
         }
 
         return array;
+    }
+
+    setAnswer(event) {
+        console.log(event.target.value);
+
+        if (event.target.value === this.props.question.correct_answer) {
+            // this.props.addScore();
+            console.log(this.props.idx + ": correct answer");
+        } else {
+            console.log(this.props.idx + ": wrong answer");
+        }
     }
 
     render() {
@@ -51,19 +62,18 @@ export default class Question extends React.Component {
                 <div className='question-container'>
                     Question #{this.props.idx}:
                     <div className='question'>{questionDetails.question}</div>
-                    Multiple Choice Answer
-                    {/* <input type="radio" value="CORRECT" name="answer" /> {questionDetails.correct_answer} */}
-
-                    <input type="radio" value={answers[0]} name="answer" /> {answers[0]}
-                    <input type="radio" value={answers[1]} name="answer" /> {answers[1]}
-                    <input type="radio" value={answers[2]} name="answer" /> {answers[2]}
-                    <input type="radio" value={answers[3]} name="answer" /> {answers[3]}
+                    <div className='answer' onChange={event => this.setAnswer(event)}>
+                        <input type="radio" value={answers[0]} name="answer" /> {answers[0]}
+                        <input type="radio" value={answers[1]} name="answer" /> {answers[1]}
+                        <input type="radio" value={answers[2]} name="answer" /> {answers[2]}
+                        <input type="radio" value={answers[3]} name="answer" /> {answers[3]}
+                    </div>
                 </div>
             );
         }
     }
 }
 Question.propTypes = {
-    question: PropTypes.string.isRequired,
+    question: PropTypes.object.isRequired,
     idx: PropTypes.number.isRequired
 }
