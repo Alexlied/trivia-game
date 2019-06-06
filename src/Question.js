@@ -51,7 +51,7 @@ export default class Question extends React.Component {
         let containerClass = this.state.color;
 
         return (
-            <div className={containerClass} value='question'>
+            <div className={'question-container ' + containerClass} value='question'>
                 <div className="question-number">Question #{this.props.idx}:</div>
                 <div className='question'>{questionDetails}</div>
                 <div className='answer-list' onChange={event => this.setAnswer(event)}>
@@ -65,6 +65,8 @@ export default class Question extends React.Component {
     }
 }
 Question.propTypes = {
-    question: PropTypes.object.isRequired,
+    question: PropTypes.string.isRequired,
+    answers: PropTypes.array.isRequired,
+    correct: PropTypes.string.isRequired,
     idx: PropTypes.number.isRequired
 }

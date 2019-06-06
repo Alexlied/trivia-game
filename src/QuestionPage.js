@@ -94,9 +94,9 @@ export default class QuestionPage extends React.Component {
             
 
         return (
-            <div className="question-page">
+            <div >
                 <div className="home-link"><Link to={"/"}>Home</Link></div>
-                <form onSubmit={this.handleSubmit}>
+                <form className="question-page" onSubmit={this.handleSubmit}>
                     <div className="question-list">{triviaEntry}</div>
                     <input className="submit-button" type="submit" value="Submit" />
                 </form>
