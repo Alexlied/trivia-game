@@ -20,14 +20,13 @@ export default class QuestionPage extends React.Component {
     componentDidMount() {
         let triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
 
-        switch(this.props.match.params.id) {
-            case 31:
-                triviaUrl = triviaUrl + "&category=9"; 
-                break;
-            default:
-                break;
+        if (Number(this.props.match.params.id) >= 9 && Number(this.props.match.params.id) <= 32) {
+            triviaUrl = triviaUrl + "&category=" + this.props.match.params.id;
         }
 
+        console.log("id: " + this.props.match.params.id);
+        console.log("url: " + triviaUrl);
+        
         fetch(triviaUrl)
             .then(response => {
                 return response.json();
@@ -91,7 +90,7 @@ export default class QuestionPage extends React.Component {
                     </div>
                 )
             });
-            
+
 
         return (
             <div >
