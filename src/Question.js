@@ -8,7 +8,6 @@ export default class Question extends React.Component {
         this.state = {
             selectedInput: false,
             color: 'question-container',
-            hasShuffled: false,
             shuffledAnswers: this.shuffle(this.props.answers)
         }
     }

@@ -50,6 +50,14 @@ export default class QuestionPage extends React.Component {
         });
     }
 
+    decodeString(encodedString) {
+        let parser = new DOMParser;
+        let dom = parser.parseFromString(
+            '<!doctype html><body>' + encodedString,
+            'text/html');
+        return dom.body.textContent;
+    }
+
     render() {
         if (this.state.isLoading) {
             return <div>Loading...</div>;
@@ -61,17 +69,17 @@ export default class QuestionPage extends React.Component {
 
         const triviaEntry = this.state.data
             .map((trivia, idx) => {
-                let question = trivia.question;
+                let question = this.decodeString(trivia.question);
                 let answers = new Array();
 
                 for (let i = 0; i < trivia.incorrect_answers.length; i++) {
-                    answers.push(trivia.incorrect_answers[i]);
+                    answers.push(this.decodeString(trivia.incorrect_answers[i]));
                 }
-                answers.push(trivia.correct_answer);
+                answers.push(this.decodeString(trivia.correct_answer));
 
                 return (
                     <div key={idx + 1}>
-                        <Question key={idx + 1} idx={idx + 1} question={question} answers={answers} correct={trivia.correct_answer} addScore={this.handleAddScore} />
+                        <Question key={idx + 1} idx={idx + 1} question={question} answers={answers} correct={this.decodeString(trivia.correct_answer)} addScore={this.handleAddScore} />
                     </div>
                 )
             });
