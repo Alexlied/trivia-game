@@ -12,7 +12,7 @@ export default class App extends React.Component {
               <Router>
                   <Switch>
                       <Route exact path="/" component={Home} />
-                      <Route exact path="/QuestionPage" component={QuestionPage} />
+                      <Route exact path="/QuestionPage/:id" component={QuestionPage} />
                   </Switch>
               </Router>
           </div>

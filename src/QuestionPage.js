@@ -18,8 +18,16 @@ export default class QuestionPage extends React.Component {
     }
 
     componentDidMount() {
-        //const triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
-        const triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
+        let triviaUrl = 'https://opentdb.com/api.php?amount=10&type=multiple';
+
+        switch(this.props.match.params.id) {
+            case 31:
+                triviaUrl = triviaUrl + "&category=9"; 
+                break;
+            default:
+                break;
+        }
+
         fetch(triviaUrl)
             .then(response => {
                 return response.json();
