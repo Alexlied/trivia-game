@@ -32,16 +32,20 @@
   }
 }
 
+html {
+  background-color: #8EA0B8;
+}
 .home {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  
 }
 
 .home-title {
-  font-size: larger;
+  font-size: 8em;
 }
 
 .question-page {
@@ -60,6 +64,7 @@
 }
 
 .question-container {
+  background-color: #566F90;
   border: thick solid black;
   margin: 5px;
   width: 550px;
@@ -99,7 +104,7 @@
   font-size: inherit;
   outline: none;
   cursor: pointer;
-  background-color: rgb(59, 119, 209);
+  background-color: #152F53;
   color: #fff;
   padding: 10px 30px;
   border-radius: 5px;
@@ -111,7 +116,7 @@
   font-size: inherit;
   outline: none;
   cursor: pointer;
-  background-color: rgb(59, 119, 209);
+  background-color: #152F53;
   color: #fff;
   padding: 10px 30px;
   border-radius: 5px;

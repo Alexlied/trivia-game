@@ -8,7 +8,7 @@ export default class App extends React.Component {
 
   render() {
       return (
-          <div>
+          <div className="body">
               <Router>
                   <Switch>
                       <Route exact path="/" component={Home} />
