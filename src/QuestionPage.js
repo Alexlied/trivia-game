@@ -45,7 +45,11 @@ export default class QuestionPage extends React.Component {
 
     handleSubmit(event) {
         let score = this.state.score;
-        alert(`You scored out of ${score} out of 10 questions`, score);
+        if (score === 10) {
+            alert("Congrats! You got a perfect score. Press the home button to try again.");
+        } else {
+            alert(`You scored out of ${score} out of 10 questions. Press the home button to try again.`, score);
+        }
         event.preventDefault();
     }
 
