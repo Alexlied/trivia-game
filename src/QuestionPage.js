@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Question from './Question';
+import home from './images/home.png';
 
 export default class QuestionPage extends React.Component {
     constructor(props) {
@@ -24,9 +25,6 @@ export default class QuestionPage extends React.Component {
             triviaUrl = triviaUrl + "&category=" + this.props.match.params.id;
         }
 
-        console.log("id: " + this.props.match.params.id);
-        console.log("url: " + triviaUrl);
-        
         fetch(triviaUrl)
             .then(response => {
                 return response.json();
@@ -77,7 +75,7 @@ export default class QuestionPage extends React.Component {
         const triviaEntry = this.state.data
             .map((trivia, idx) => {
                 let question = this.decodeString(trivia.question);
-                let answers = new Array();
+                let answers = [];
 
                 for (let i = 0; i < trivia.incorrect_answers.length; i++) {
                     answers.push(this.decodeString(trivia.incorrect_answers[i]));
@@ -94,7 +92,7 @@ export default class QuestionPage extends React.Component {
 
         return (
             <div >
-                <div className="home-link"><Link to={"/"}>Home</Link></div>
+                <div className="home-link"><Link to={"/"}><img src={home} alt="home" /></Link></div>
                 <form className="question-page" onSubmit={this.handleSubmit}>
                     <div className="question-list">{triviaEntry}</div>
                     <input className="submit-button" type="submit" value="Submit" />

@@ -6,16 +6,15 @@ import 'react-dropdown/style.css'
 
 export default class Home extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             selected: ''
         }
-        this._onSelect = this._onSelect.bind(this)
+        this._onSelect = this._onSelect.bind(this);
     }
 
     _onSelect(option) {
-        console.log('You selected ', option.label)
-        this.setState({ selected: option })
+        this.setState({ selected: option });
     }
 
     getKeyByValue(object, value) {
@@ -65,7 +64,7 @@ export default class Home extends React.Component {
                     Trivia Game
                 </div>
                 <p>This game will allow users to quiz themselves on a variety of subjects.
-                    The database is publically available so users are free to submit their own questions at <a href="https://opentdb.com/">https://opentdb.com/</a>.</p>
+                    The database is publically available so users are free to submit their own questions at <a href="https://opentdb.com/">https://opentdb.com/</a>. Created by Alex Lied.</p>
                 <p>Select a category of trivia questions and start the quiz.</p>
                 <ReactDropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
                 <Link to={`/QuestionPage/${placeHolderValue}`}><div className="start-button">Start Quiz</div></Link>

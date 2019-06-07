@@ -6,16 +6,16 @@ import QuestionPage from './QuestionPage';
 
 export default class App extends React.Component {
 
-  render() {
-      return (
-          <div className="body">
-              <Router>
-                  <Switch>
-                      <Route exact path="/" component={Home} />
-                      <Route exact path="/QuestionPage/:id" component={QuestionPage} />
-                  </Switch>
-              </Router>
-          </div>
-      );
-  }
+    render() {
+        return (
+            <div className="body">
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/QuestionPage/:id" component={QuestionPage} />
+                    </Switch>
+                </Router>
+            </div>
+        );
+    }
 }

@@ -22,21 +22,16 @@ export default class Question extends React.Component {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-        console.log("Shuffled answers");
         return array;
     }
 
     setAnswer(event) {
-        console.log(event.target.value);
-
         if (event.target.value === this.props.correct) {
             this.props.addScore(1);
-            console.log("Selected index = " + event.target.value + ": correct answer");
             this.setState({
                 color: 'question-container-correct'
             });
         } else {
-            console.log("Selected index = " + event.target.value + ": wrong answer");
             this.setState({
                 color: 'question-container-wrong'
             });
