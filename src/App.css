@@ -33,7 +33,6 @@
 }
 
 html {
-  /* background-color: #8EA0B8; */
   background-color: #566F90;
 }
 .home {
@@ -65,7 +64,6 @@ html {
 }
 
 .question-container {
-  /* background-color: #566F90; */
   background-color: #8EA0B8;
   border: thick solid black;
   margin: 5px;
